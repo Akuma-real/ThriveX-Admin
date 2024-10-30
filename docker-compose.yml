@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  admin:
+    image: ghcr.io/akuma-real/thrivex-admin:main
+    container_name: thrivex-admin
+    restart: always
+    ports:
+      - "9002:9002"
+    environment:
+      - VITE_API_BASE_URL=${VITE_API_BASE_URL}
+      - VITE_QINIU_TOKEN=${VITE_QINIU_TOKEN}
+      - VITE_BAIDU_API_KEY=${VITE_BAIDU_API_KEY}
+      - VITE_XUNFEI_API_KEY=${VITE_XUNFEI_API_KEY}
+    networks:
+      - thrivex-network
+
+networks:
+  thrivex-network:
+    name: thrivex-network
+    driver: bridge 
