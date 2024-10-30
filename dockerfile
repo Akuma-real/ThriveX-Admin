@@ -1,5 +1,5 @@
 # 构建阶段
-FROM docker.io/library/node:20-alpine AS build
+FROM node:20-alpine AS build
 
 # 设置工作目录
 WORKDIR /app
@@ -20,7 +20,7 @@ COPY . .
 RUN npm run build
 
 # 生产阶段
-FROM docker.io/library/nginx:alpine
+FROM nginx:alpine
 
 # 安装 dos2unix
 RUN apk add --no-cache dos2unix
