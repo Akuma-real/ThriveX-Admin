@@ -22,6 +22,9 @@ RUN npm run build
 # 生产阶段
 FROM docker.io/library/nginx:alpine
 
+# 安装 dos2unix
+RUN apk add --no-cache dos2unix
+
 # 复制构建产物到 Nginx 目录
 COPY --from=build /app/dist /usr/share/nginx/html
 
@@ -31,7 +34,6 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 # 添加环境变量替换脚本
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh && \
-    # 确保脚本使用 LF 换行符
     dos2unix /docker-entrypoint.sh
 
 # 暴露端口
