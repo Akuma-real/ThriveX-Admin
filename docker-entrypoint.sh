@@ -1,12 +1,4 @@
 #!/bin/sh
-<<<<<<< Updated upstream
-
-# 替换环境变量
-envsubst < /usr/share/nginx/html/index.html > /usr/share/nginx/html/index.html.tmp
-mv /usr/share/nginx/html/index.html.tmp /usr/share/nginx/html/index.html
-
-# 执行传入的命令
-=======
 set -e
 
 # 从环境变量更新 nginx 配置
@@ -31,5 +23,4 @@ server {
 EOF
 
 # 启动nginx
->>>>>>> Stashed changes
 exec "$@" 

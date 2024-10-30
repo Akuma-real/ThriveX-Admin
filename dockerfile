@@ -30,7 +30,9 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # 添加环境变量替换脚本
 COPY docker-entrypoint.sh /docker-entrypoint.sh
-RUN chmod +x /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh && \
+    # 确保脚本使用 LF 换行符
+    dos2unix /docker-entrypoint.sh
 
 # 暴露端口
 EXPOSE 9002
